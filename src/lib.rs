@@ -33,7 +33,7 @@ fn generate_private_key(py: Python) -> PyResult<Py<PyBytes>> {
 ///
 /// Returns:
 ///     bytes: The corresponding public key as a byte sequence.
-fn generate_public_key_based_on_private_key(py: Python, private_key: &PyBytes) -> PyResult<Py<PyBytes>> {
+fn generate_public_key(py: Python, private_key: &PyBytes) -> PyResult<Py<PyBytes>> {
     let mut rng = AesState::new();
     let mut pk = [0u8; CRYPTO_PUBLICKEYBYTES];
     let private_key_bytes = private_key.as_bytes();
@@ -141,7 +141,7 @@ fn decrypt(py: Python, private_key: &PyBytes, ciphertext: &PyBytes) -> PyResult<
 /// A Python module that wraps the NTRU post-quantum encryption scheme using Rust.
 fn py_ntru(_py: Python, m: &PyModule) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(generate_private_key, m)?)?;
-    m.add_function(wrap_pyfunction!(generate_public_key_based_on_private_key, m)?)?;
+    m.add_function(wrap_pyfunction!(generate_public_key, m)?)?;
     m.add_function(wrap_pyfunction!(encrypt, m)?)?;
     m.add_function(wrap_pyfunction!(decrypt, m)?)?;
     Ok(())
