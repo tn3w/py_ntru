@@ -217,19 +217,21 @@ The module is organized into several classes, each responsible for specific task
 ## Table of Contents
 
 1. [Classes](#classes)
+   
+   Serialization:
    - [Serialization](#serialization)
    - [Nothing](#nothing)
    - [UTF8](#utf8)
    - [Hex](#hex)
    - [Base64](#base64)
    - [Base64UrlSafe](#base64urlsafe)
+
+   NTRU:
    - [NTRUPublicKey](#ntrupublickey)
    - [NTRUSecretKey](#ntrusecretkey)
    - [NTRUKeyPair](#ntru_key_pair)
    - [NTRU](#ntru)
 2. [Functions](#functions)
-   - [remove_special_characters](#remove_special_characters)
-   - [load_serialization](#load_serialization)
    - [generate_public_key](#generate_public_key)
    - [generate_secret_key](#generate_secret_key)
 
@@ -468,9 +470,7 @@ The `NTRU` class provides encryption and decryption functionalities using NTRU k
 
 ```python
 # Example code snippet
-ntru_key_pair = N
-
-TRUKeyPair()
+ntru_key_pair = NTRUKeyPair()
 ntru_key_pair.generate()
 
 ntru = NTRU(ntru_key_pair.public_key, ntru_key_pair.secret_key)
@@ -485,54 +485,6 @@ print(plain)  # Outputs: "Hello, world!"
 ---
 
 ## Functions
-
-### remove_special_characters
-
-**Description**:  
-Removes special characters from a string, returning only alphanumeric characters.
-
-**Parameters**:
-
-- `text (str)`: The input text.
-
-**Returns**:  
-A string with only alphanumeric characters.
-
-#### Example Usage:
-
-```python
-# Example code snippet
-text = "Hello, World!"
-cleaned_text = remove_special_characters(text)
-
-print(cleaned_text)  # Outputs: 'HelloWorld'
-```
-
----
-
-### load_serialization
-
-**Description**:  
-Instantiates and returns the appropriate serialization class based on a given format string.
-
-**Parameters**:
-
-- `serialization_type (str)`: The type of serialization ('bytes', 'utf-8', 'hex', 'base64', 'base64-url-safe').
-
-**Returns**:  
-An instance of a serialization class (`Serialization`).
-
-#### Example Usage:
-
-```python
-# Example code snippet
-serialization = load_serialization('base64')
-
-encoded = serialization.encode(b'example data')
-print(encoded)  # Outputs: 'ZXhhbXBsZSBkYXRh'
-```
-
----
 
 ### generate_public_key
 
